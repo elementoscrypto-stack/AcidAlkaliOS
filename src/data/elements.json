@@ -28,12 +28,12 @@
     "name": "Lithium",
     "atomicNumber": 3,
     "category": "Alkali metal",
-    "atomicWeight": "3 u",
-    "density": "1.690 g/cm\u00b3",
-    "meltingPoint": "231\u00b0C",
+    "atomicWeight": "6.94 u",
+    "density": "0.534 g/cm\u00b3",
+    "meltingPoint": "180.5\u00b0C",
     "phase": "Solid",
-    "electronegativity": 0.8,
-    "dataStatus": "estimated-fallback"
+    "electronegativity": 0.98,
+    "dataStatus": "verified-core"
   },
   {
     "symbol": "Be",
@@ -64,24 +64,24 @@
     "name": "Carbon",
     "atomicNumber": 6,
     "category": "Nonmetal",
-    "atomicWeight": "6 u",
-    "density": "2.980 g/cm\u00b3",
-    "meltingPoint": "672\u00b0C",
+    "atomicWeight": "12.011 u",
+    "density": "2.267 g/cm\u00b3",
+    "meltingPoint": "3550\u00b0C",
     "phase": "Solid",
-    "electronegativity": 2.88,
-    "dataStatus": "estimated-fallback"
+    "electronegativity": 2.55,
+    "dataStatus": "verified-core"
   },
   {
     "symbol": "N",
     "name": "Nitrogen",
     "atomicNumber": 7,
     "category": "Nonmetal",
-    "atomicWeight": "7 u",
-    "density": "3.160 g/cm\u00b3",
-    "meltingPoint": "709\u00b0C",
+    "atomicWeight": "14.007 u",
+    "density": "0.0012506 g/cm\u00b3",
+    "meltingPoint": "-210.0\u00b0C",
     "phase": "Gas",
-    "electronegativity": 2.52,
-    "dataStatus": "estimated-fallback"
+    "electronegativity": 3.04,
+    "dataStatus": "verified-core"
   },
   {
     "symbol": "O",
@@ -220,24 +220,24 @@
     "name": "Potassium",
     "atomicNumber": 19,
     "category": "Alkali metal",
-    "atomicWeight": "19 u",
-    "density": "1.330 g/cm\u00b3",
-    "meltingPoint": "416\u00b0C",
+    "atomicWeight": "39.0983 u",
+    "density": "0.862 g/cm\u00b3",
+    "meltingPoint": "63.4\u00b0C",
     "phase": "Solid",
-    "electronegativity": 0.92,
-    "dataStatus": "estimated-fallback"
+    "electronegativity": 0.82,
+    "dataStatus": "verified-core"
   },
   {
     "symbol": "Ca",
     "name": "Calcium",
     "atomicNumber": 20,
     "category": "Alkaline earth metal",
-    "atomicWeight": "20 u",
-    "density": "2.760 g/cm\u00b3",
-    "meltingPoint": "1113\u00b0C",
+    "atomicWeight": "40.078 u",
+    "density": "1.54 g/cm\u00b3",
+    "meltingPoint": "842\u00b0C",
     "phase": "Solid",
-    "electronegativity": 1.28,
-    "dataStatus": "estimated-fallback"
+    "electronegativity": 1.0,
+    "dataStatus": "verified-core"
   },
   {
     "symbol": "Sc",
@@ -364,12 +364,12 @@
     "name": "Gallium",
     "atomicNumber": 31,
     "category": "Post-transition metal",
-    "atomicWeight": "31 u",
-    "density": "7.920 g/cm\u00b3",
-    "meltingPoint": "753\u00b0C",
+    "atomicWeight": "69.723 u",
+    "density": "5.91 g/cm\u00b3",
+    "meltingPoint": "29.8\u00b0C",
     "phase": "Solid",
-    "electronegativity": 1.8,
-    "dataStatus": "estimated-fallback"
+    "electronegativity": 1.81,
+    "dataStatus": "verified-core"
   },
   {
     "symbol": "Ge",
@@ -556,12 +556,12 @@
     "name": "Silver",
     "atomicNumber": 47,
     "category": "Transition metal",
-    "atomicWeight": "47 u",
-    "density": "9.460 g/cm\u00b3",
-    "meltingPoint": "1761\u00b0C",
+    "atomicWeight": "107.8682 u",
+    "density": "10.49 g/cm\u00b3",
+    "meltingPoint": "961.8\u00b0C",
     "phase": "Solid",
-    "electronegativity": 1.82,
-    "dataStatus": "estimated-fallback"
+    "electronegativity": 1.93,
+    "dataStatus": "verified-core"
   },
   {
     "symbol": "Cd",
@@ -976,12 +976,12 @@
     "name": "Lead",
     "atomicNumber": 82,
     "category": "Post-transition metal",
-    "atomicWeight": "82 u",
-    "density": "7.380 g/cm\u00b3",
-    "meltingPoint": "605\u00b0C",
+    "atomicWeight": "207.2 u",
+    "density": "11.34 g/cm\u00b3",
+    "meltingPoint": "327.5\u00b0C",
     "phase": "Solid",
-    "electronegativity": 1.92,
-    "dataStatus": "estimated-fallback"
+    "electronegativity": 2.33,
+    "dataStatus": "verified-core"
   },
   {
     "symbol": "Bi",
