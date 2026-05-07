@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ENC-AL-001",
+    "element": "Aluminum",
+    "symbol": "Al",
+    "environment": "1M NaOH",
+    "condition": "Alkaline solution",
+    "duration": "5 min",
+    "temperature": "22\u00b0C",
+    "result": "Strong surface disruption and likely aluminate pathway.",
+    "status": "Verified",
+    "score": 92
+  },
+  {
+    "id": "ENC-CU-002",
+    "element": "Copper",
+    "symbol": "Cu",
+    "environment": "Dilute acid",
+    "condition": "Acidic solution",
+    "duration": "10 min",
+    "temperature": "22\u00b0C",
+    "result": "Slow response with visible surface-state evolution.",
+    "status": "Reviewed",
+    "score": 81
+  },
+  {
+    "id": "ENC-FE-003",
+    "element": "Iron",
+    "symbol": "Fe",
+    "environment": "Salt water",
+    "condition": "Corrosion pathway",
+    "duration": "24 h",
+    "temperature": "Room temp",
+    "result": "Oxidation-driven surface change and residue formation.",
+    "status": "Submitted",
+    "score": 76
+  }
+]
