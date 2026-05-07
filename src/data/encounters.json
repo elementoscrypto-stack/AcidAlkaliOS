@@ -34,5 +34,29 @@
     "result": "Oxidation-driven surface change and residue formation.",
     "status": "Submitted",
     "score": 76
+  },
+  {
+    "id": "ENC-TI-004",
+    "element": "Titanium",
+    "symbol": "Ti",
+    "environment": "Salt fog",
+    "condition": "Passivation stability",
+    "duration": "48 h",
+    "temperature": "30\u00b0C",
+    "result": "High persistence oxide barrier with low visible degradation.",
+    "status": "Verified",
+    "score": 88
+  },
+  {
+    "id": "ENC-MG-005",
+    "element": "Magnesium",
+    "symbol": "Mg",
+    "environment": "Dilute acid",
+    "condition": "Rapid reaction pathway",
+    "duration": "2 min",
+    "temperature": "22\u00b0C",
+    "result": "Fast surface response and gas evolution candidate.",
+    "status": "Reviewed",
+    "score": 84
   }
 ]
