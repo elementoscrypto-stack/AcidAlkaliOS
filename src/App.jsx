@@ -1,9 +1,10 @@
 
 import React, { useMemo, useState } from "react";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, Sparkles, Network, Database, BarChart3, Atom, Rocket, GitBranch } from "lucide-react";
 import elements from "./data/elements.json";
 import periodicLayout from "./data/periodicLayout.json";
 import encounters from "./data/encounters.json";
+import upgradeChecklist from "./data/upgradeChecklist.json";
 import "./styles.css";
 
 const catalog = Object.fromEntries(elements.map((e) => [e.symbol, e]));
@@ -51,8 +52,17 @@ function similar(symbol, limit = 4) {
 }
 
 function Panel({ children, className = "" }) { return <section className={"panel " + className}>{children}</section>; }
-function Metric({ t, v, n }) { return <div className="metric"><small>{t}</small><b>{v}</b><em>{n}</em></div>; }
+function Pill({ children }) { return <span className="pill">{children}</span>; }
+function Metric({ icon, t, v, n }) { return <div className="metric"><div className="metricIcon">{icon}</div><small>{t}</small><b>{v}</b><em>{n}</em></div>; }
 function band(x) { return x >= 4.4 ? "veryhigh" : x >= 3.5 ? "high" : x >= 2.5 ? "moderate" : x >= 1.5 ? "low" : "verylow"; }
+
+const loops = ["Discovery", "Pattern", "Comparison", "Encounter", "Similarity", "Atlas", "Insight", "Prediction", "Collaboration", "Feed", "Reputation"];
+const feed = [
+  ["New similarity", "Aluminum ↔ Gallium", "High alkaline/passivation overlap"],
+  ["Pattern alert", "Titanium oxide stability", "Passivation signal strengthened"],
+  ["Encounter", "Magnesium acid response", "Gas evolution candidate reviewed"],
+  ["Graph update", "Transition metals cluster", "Behaviour edges recalculated"],
+];
 
 export default function App() {
   const [route, setRoute] = useState("/");
@@ -78,8 +88,8 @@ export default function App() {
       {menuOpen && <button className="overlay" onClick={() => setMenuOpen(false)} />}
       <aside className={menuOpen ? "open" : ""}>
         <div className="brand"><div className="eye" /><div><h1>ElementOS</h1><p>Explore. Compare. Understand Matter</p></div><button className="close" onClick={() => setMenuOpen(false)}><X size={16}/></button></div>
-        {[["Dashboard","/"],["Behavior Atlas","/atlas"],["Element Explorer","/explorer"],["Comparisons","/compare"],["Similarity Universe","/similarity"],["Behaviour Graph","/graph"],["Encounters","/encounters"],["Roper Equation","/roper"]].map(([label,path]) => (
-          <button className={route === path ? "live" : ""} onClick={() => nav(path)} key={path}>{label}<span>{route === path ? "Live" : "Open"}</span></button>
+        {[["Dashboard","/",Sparkles],["Behavior Atlas","/atlas",Atom],["Element Explorer","/explorer",Search],["Comparisons","/compare",BarChart3],["Similarity Universe","/similarity",Network],["Behaviour Graph","/graph",GitBranch],["Encounters","/encounters",Database],["Roper Equation","/roper",Rocket],["Upgrade Log","/upgrades",Sparkles]].map(([label,path,Icon]) => (
+          <button className={route === path ? "live" : ""} onClick={() => nav(path)} key={path}><span className="navLeft"><Icon size={15}/>{label}</span><span>{route === path ? "Live" : "Open"}</span></button>
         ))}
       </aside>
       <main>
@@ -91,27 +101,43 @@ export default function App() {
         {route === "/graph" && <Graph selected={selected} setSelected={setSelected} />}
         {route === "/encounters" && <Encounters />}
         {route === "/roper" && <Roper />}
+        {route === "/upgrades" && <UpgradeLog />}
       </main>
     </div>
   );
 }
 
 function Dashboard({ nav }) {
-  return <div className="page"><Panel className="hero"><div><h2>Element<span>OS</span></h2><p>A scientific operating system for exploring elements, comparing behaviour, mapping similarities, and building a repository of experimental encounters.</p><div className="actions"><button onClick={() => nav("/atlas")}>Launch Atlas</button><button onClick={() => nav("/graph")}>Open Behaviour Graph</button><button onClick={() => nav("/roper")}>Roper Equation</button></div></div><div className="metrics"><Metric t="Elements Profiled" v="118/118" n="100% complete" /><Metric t="Encounters" v="1,842" n="+23 this week" /><Metric t="Data Points" v="18,956" n="prototype" /><Metric t="Researchers" v="2,431" n="north star" /></div></Panel><div className="grid2"><Panel><h3>11 Viral Discovery Loops</h3>{["Discovery","Pattern","Comparison","Encounter","Similarity","Atlas","Insight","Prediction","Collaboration","Feed","Reputation"].map((x) => <div className="row" key={x}>{x}<span>active</span></div>)}</Panel><Panel><h3>North Star</h3><p><b>Verified Material Interactions Recorded</b></p><p>The more experiments, comparisons, and behaviour links added, the smarter ElementOS becomes.</p></Panel></div></div>;
+  return <div className="page">
+    <Panel className="hero">
+      <div className="heroCopy">
+        <Pill>Scientific Operating Environment</Pill>
+        <h2>Element<span>OS</span></h2>
+        <p>A premium scientific platform for exploring elements, comparing behaviour, mapping similarities, and building the GitHub of experimental science.</p>
+        <div className="actions"><button onClick={() => nav("/atlas")}>Launch Atlas</button><button onClick={() => nav("/graph")}>Open Behaviour Graph</button><button onClick={() => nav("/roper")}>Roper Equation</button></div>
+      </div>
+      <div className="metrics"><Metric icon={<Atom size={18}/>} t="Elements Profiled" v="118/118" n="100% complete" /><Metric icon={<Database size={18}/>} t="Encounters" v="1,842" n="+23 this week" /><Metric icon={<Network size={18}/>} t="Data Points" v="18,956" n="prototype" /><Metric icon={<Rocket size={18}/>} t="Researchers" v="2,431" n="north star" /></div>
+    </Panel>
+    <div className="grid2">
+      <Panel><h3>11 Viral Discovery Loops</h3>{loops.map((x, i) => <div className="row" key={x}><span className="rowName">{String(i+1).padStart(2,"0")} · {x}</span><span>active</span></div>)}</Panel>
+      <Panel><h3>Discovery Feed</h3>{feed.map(([type,title,detail]) => <div className="feed" key={title}><small>{type}</small><b>{title}</b><p>{detail}</p></div>)}</Panel>
+    </div>
+    <Panel><h3>North Star</h3><p><b>Verified Material Interactions Recorded.</b> Every experiment, comparison, and behaviour edge makes ElementOS smarter and more valuable.</p></Panel>
+  </div>;
 }
 
 function Atlas({ layer, setLayer, selected, setSelected, hover, setHover }) {
   const selectedElement = catalog[selected];
   const preview = hover ? catalog[hover] : null;
   const previewScore = hover ? scoreFor(hover)[layer] : 0;
-  return <div className="page"><h2>Behavior Atlas</h2><div className="layerbar">{["acid","alkaline","passivation","diffusion"].map((l) => <button className={layer === l ? "active" : ""} onClick={() => setLayer(l)} key={l}>{l}</button>)}</div><div className="grid2"><Panel className="ptablePanel"><div className="ptable">{preview && <div className="hoverPreview"><b>{preview.symbol}</b><span>{preview.name}</span><small>{layer}: {previewScore.toFixed(2)}</small><small>Encounters: {encounters.filter((e) => e.symbol === preview.symbol).length || Math.round(scoreFor(preview.symbol).overall * 2)}</small></div>}{periodicLayout.map((row, ri) => <div className="periodrow" key={ri}>{row.map((sym, i) => sym ? <button key={sym} className={"tile " + band(scoreFor(sym)[layer])} onMouseEnter={() => setHover(sym)} onMouseLeave={() => setHover(null)} onClick={() => { setSelected(sym); setHover(null); }}><small>{catalog[sym].atomicNumber}</small>{sym}<em>{scoreFor(sym).overall.toFixed(1)}</em></button> : <div key={i} className="blank" />)}</div>)}</div></Panel><Panel><h3>Element Insight</h3><div className="bigsymbol">{selected}</div><h3>{selectedElement.name}</h3><p>{selectedElement.category}</p><p>Overall score: {scoreFor(selected).overall.toFixed(2)}</p></Panel></div></div>;
+  return <div className="page"><h2>Behavior Atlas</h2><div className="toolbar"><div className="layerbar">{["acid","alkaline","passivation","diffusion"].map((l) => <button className={layer === l ? "active" : ""} onClick={() => setLayer(l)} key={l}>{l}</button>)}</div><Pill>Layer: {layer}</Pill></div><div className="grid2"><Panel className="ptablePanel"><div className="ptable">{preview && <div className="hoverPreview"><b>{preview.symbol}</b><span>{preview.name}</span><small>{layer}: {previewScore.toFixed(2)}</small><small>Encounters: {encounters.filter((e) => e.symbol === preview.symbol).length || Math.round(scoreFor(preview.symbol).overall * 2)}</small></div>}{periodicLayout.map((row, ri) => <div className="periodrow" key={ri}>{row.map((sym, i) => sym ? <button key={sym} className={"tile " + band(scoreFor(sym)[layer])} onMouseEnter={() => setHover(sym)} onMouseLeave={() => setHover(null)} onClick={() => { setSelected(sym); setHover(null); }}><small>{catalog[sym].atomicNumber}</small>{sym}<em>{scoreFor(sym).overall.toFixed(1)}</em></button> : <div key={i} className="blank" />)}</div>)}</div></Panel><Panel><h3>Element Insight</h3><div className="bigsymbol">{selected}</div><h3>{selectedElement.name}</h3><p>{selectedElement.category}</p><p>Overall score: {scoreFor(selected).overall.toFixed(2)}</p><div className="miniStats">{Object.entries(scoreFor(selected)).map(([k,v]) => <div key={k}><span>{k}</span><b>{v.toFixed(2)}</b></div>)}</div></Panel></div></div>;
 }
 
 function Explorer({ selected, setSelected, filtered, query, setQuery, nav }) {
   const e = catalog[selected] || catalog.Al;
   const s = scoreFor(selected);
   const sims = similar(selected, 4);
-  return <div className="page"><h2>Element Explorer</h2><div className="grid2"><Panel><div className="search"><Search size={16} /><input value={query} onChange={(ev) => setQuery(ev.target.value)} placeholder="Search all 118 elements..." /></div><div className="elementList">{filtered.map((el) => <button className={selected === el.symbol ? "active" : ""} onClick={() => setSelected(el.symbol)} key={el.symbol}>{el.name} ({el.symbol})<span>{el.atomicNumber}</span></button>)}</div></Panel><Panel><div className="bigsymbol">{e.symbol}</div><h3>{e.name}</h3><p>{e.category}</p><div className="propgrid">{["atomicWeight","density","meltingPoint","phase","electronegativity"].map((k) => <div key={k}><small>{k}</small><b>{String(e[k] ?? "—")}</b></div>)}</div><h3>Behaviour Scores</h3>{Object.entries(s).map(([k, v]) => <div className="bar" key={k}><span>{k}</span><i style={{ width: `${v / 5 * 100}%` }} /><b>{v.toFixed(2)}</b></div>)}<h3>Explore Next</h3>{sims.map((x) => <button className="sim" onClick={() => setSelected(x.symbol)} key={x.symbol}>{x.name}<span>{x.symbol} · {x.distance.toFixed(2)}</span></button>)}<div className="actions"><button onClick={() => nav("/compare")}>Open Comparison Engine</button><button onClick={() => nav("/similarity")}>Open Similarity Universe</button></div></Panel></div></div>;
+  return <div className="page"><h2>Element Explorer</h2><div className="grid2"><Panel><div className="search"><Search size={16} /><input value={query} onChange={(ev) => setQuery(ev.target.value)} placeholder="Search all 118 elements..." /></div><div className="resultCount">{filtered.length} elements</div><div className="elementList">{filtered.map((el) => <button className={selected === el.symbol ? "active" : ""} onClick={() => setSelected(el.symbol)} key={el.symbol}>{el.name} ({el.symbol})<span>{el.atomicNumber}</span></button>)}</div></Panel><Panel><div className="elementHeader"><div className="bigsymbol">{e.symbol}</div><div><h3>{e.name}</h3><p>{e.category}</p></div></div><div className="propgrid">{["atomicWeight","density","meltingPoint","phase","electronegativity","dataStatus"].map((k) => <div key={k}><small>{k}</small><b>{String(e[k] ?? "—")}</b></div>)}</div><h3>Behaviour Scores</h3>{Object.entries(s).map(([k, v]) => <div className="bar" key={k}><span>{k}</span><i style={{ width: `${v / 5 * 100}%` }} /><b>{v.toFixed(2)}</b></div>)}<h3>Explore Next</h3>{sims.map((x) => <button className="sim" onClick={() => setSelected(x.symbol)} key={x.symbol}>{x.name}<span>{x.symbol} · {x.distance.toFixed(2)}</span></button>)}<div className="actions"><button onClick={() => nav("/compare")}>Open Comparison Engine</button><button onClick={() => nav("/similarity")}>Open Similarity Universe</button></div></Panel></div></div>;
 }
 
 function Compare({ compare, setCompare, add, setAdd }) {
@@ -138,3 +164,4 @@ function Graph({ selected, setSelected }) {
 
 function Encounters() { return <div className="page"><h2>Encounter Database</h2><div className="grid3">{encounters.map((e) => <Panel key={e.id}><small>{e.id}</small><h3>{e.element} in {e.environment}</h3><p>{e.condition} · {e.duration} · {e.temperature}</p><p>{e.result}</p><b>Data value {e.score}</b></Panel>)}</div></div>; }
 function Roper() { return <div className="page"><h2>Roper Master Equation</h2><Panel><div className="equation">Ψ<sub>G</sub>(𝒩,t)=Σ A<sub>i</sub>e<sup>i(Ω<sub>i</sub>t+Φ<sub>i</sub>(𝒢))</sup> · C<sub>i</sub>(⊥,Δ) · G<sub>i</sub></div><p>Reality = oscillating nodes × geometry × perpendicular transitions × emergent gravity.</p></Panel></div>; }
+function UpgradeLog() { return <div className="page"><h2>100 Upgrade Polish Pass</h2><Panel><div className="upgradeGrid">{upgradeChecklist.map((item, index) => <div className="upgrade" key={item}><b>{String(index+1).padStart(3,"0")}</b><span>{item.replace(/^Upgrade \\d+: /,"")}</span></div>)}</div></Panel></div>; }
